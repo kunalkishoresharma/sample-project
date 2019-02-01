@@ -1,0 +1,11 @@
+[
+    {            
+    "productName": "Pink Rose from API",
+    "productCode": 111111,
+    "productAvailable": true,
+    "price": 30000,
+    "starRating": 2.5,
+    "imageUrl": "https://openclipart.org/download/242106/Stylized-Rose-Enhanced-2.svg"                               
+
+}
+]

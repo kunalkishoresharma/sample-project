@@ -1,0 +1,73 @@
+<!-- <div>Hello!!!!!!!!!!!!!!!, {{title}}</div> -->
+
+<div class= 'panel panel-primary'>
+    <div class="panel-heading">
+         {{title}}           
+    </div>
+    <div>
+        <h1 innerText ={{pageTitle}} ></h1>
+        
+    </div>
+
+    
+    <div class= "panel-body">
+        <div class='row'>
+            <div class="col-md-2">Filter by:</div>
+            <div class="col-md-4"> 
+                <input type="text" [(ngModel)] = 'listFilter' />
+                
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Filtered by: {{listFilter}}  </h3>
+            </div>
+        </div>
+
+        <div class="table table-responsive">
+            <table class="table" *ngIf = 'products && products.length' >
+                <thead>
+                    <tr>
+                        <th>
+                            <button (click) = 'toggleImage()' class="btn btn-primary" >
+                                {{showImage ? 'Hide':'Show'}} Image                                
+                            </button>                      
+
+                        </th>
+                        <th><b>Product</b></th>
+                        <th><b>Code</b></th>
+                        <th><b>Available</b></th>
+                        <th><b>Price</b></th>
+                        <th><b>5 Star Rating</b></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor = 'let pObj of products | ProductFilter : listFilter' >
+                        <td>
+                            <img [src] ='pObj.imageUrl' alt="image not found"
+                            [style.width.px] = 'imageWidth' [style.margin.px] = 'imageMargin'
+                            *ngIf = 'showImage'/> 
+                            
+                        <!-- <img *ngIf='showImage'
+                                [src] = 'product.imageUrl'  
+                                [title]='product.productName'
+                                [style.width.px] = 'imageWidth'
+                                [style.margin.px] = 'imageMargin'
+                            >  -->
+                        </td>
+                        <td> <b><a [routerLink]= "['/products', pObj.productCode]">{{pObj.productName }}</a></b> </td>
+                        <!-- <td><b><a [routerLink]= "['/product', product.productId]" > 
+                            {{product.productName | uppercase}} </a></b> </td> -->
+                        <td> {{pObj.productCode}}</td>
+                        <td>{{pObj.productAvailable}}</td>
+                        <td>{{pObj.price | currency:'USD': true: '1.2-4'}}</td>
+                        <!-- <td>{{pObj.starRating}}</td>  -->
+                        <td><star-comp [rating] = 'pObj.starRating'></star-comp></td>                      
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
